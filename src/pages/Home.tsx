@@ -317,6 +317,7 @@ export default function Home() {
         <video
           className="w-full max-h-[80vh] object-contain mx-auto"
           src="/videos/promo/promocionfinal.mp4"
+          controls
           autoPlay
           muted
           loop
