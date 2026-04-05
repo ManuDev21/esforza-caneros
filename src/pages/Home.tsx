@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight, Trophy, Clock, Users, X, Play, ArrowRight, Quote, Award, Sparkles, Eye, ImagePlus, Video, Baby, Calendar } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Trophy, Clock, Users, X, Play, ArrowRight, Quote, Award, Sparkles, Eye, Star, ImagePlus, Video, Baby, Calendar } from 'lucide-react'
 import AnimatedSection from '../components/AnimatedSection'
 import OptImage from '../components/OptImage'
 import LazyVideo from '../components/LazyVideo'
@@ -312,6 +312,18 @@ export default function Home() {
 
   return (
     <div className="noise-bg">
+      {/* ═══ Video Promocional ═══ */}
+      <section className="relative w-full bg-black">
+        <video
+          className="w-full max-h-[80vh] object-contain mx-auto"
+          src="/videos/promo/promocionfinal.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+      </section>
+
       {/* ═══ Hero ═══ */}
       <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center scale-110" style={{ backgroundImage: `url('/images/heroes/hero2.png')` }} />
@@ -328,10 +340,14 @@ export default function Home() {
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black leading-[1.05]">
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black leading-[1.08]">
             <span className="text-white">BIENVENIDOS A</span>
             <br />
             <span className="text-gradient">ESFORZA CAÑEROS</span>
+            <br />
+            <span className="text-white text-xl sm:text-2xl md:text-4xl lg:text-5xl tracking-wide">ZACATEPEC</span>
+            <br />
+            <span className="text-gradient text-lg sm:text-xl md:text-3xl lg:text-4xl tracking-widest">CAMPUS TOLUCA AEROPUERTO</span>
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
@@ -367,6 +383,52 @@ export default function Home() {
             <div className="w-1 h-2.5 bg-primary/60 rounded-full" />
           </div>
         </motion.div>
+      </section>
+
+      {/* ═══ Invitados Especiales — Exjugadores ═══ */}
+      <section className="relative py-20 sm:py-28 lg:py-36 overflow-hidden">
+        <div className="absolute inset-0 bg-bg-medium" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+        <div className="absolute top-20 -right-40 w-[400px] h-[400px] bg-gold/[0.04] rounded-full blur-[150px]" />
+        <div className="absolute bottom-20 -left-40 w-[350px] h-[350px] bg-yellow-500/[0.03] rounded-full blur-[130px]" />
+
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+          <AnimatedSection>
+            <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+              <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs sm:text-sm font-medium tracking-wider mb-6 sm:mb-8">
+                <Star size={14} /> Invitados Especiales
+              </div>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black">
+                <span className="text-gradient-gold">Exjugadores Profesionales</span>
+              </h2>
+              <p className="mt-5 sm:mt-6 text-text-secondary max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
+                Tuvimos el honor de recibir a <strong className="text-white font-semibold">exjugadores profesionales</strong> que compartieron su experiencia y motivaron a nuestros jóvenes talentos.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-14">
+            {[
+              { src: '/images/invitados/invitados1.jpeg', alt: 'Invitado especial 1' },
+              { src: '/images/invitados/invitado2.jpeg', alt: 'Invitado especial 2' },
+              { src: '/images/invitados/invitados3.jpeg', alt: 'Invitado especial 3' },
+            ].map((img, i) => (
+              <AnimatedSection key={img.src} direction="zoom" delay={i * 0.1}>
+                <button onClick={() => setLightbox({ src: img.src, type: 'image' })}
+                  className="w-full glass-card rounded-2xl sm:rounded-3xl overflow-hidden group cursor-pointer ring-1 ring-gold/10 hover:ring-gold/30 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-all duration-500">
+                  <OptImage src={img.src} alt={img.alt} className="w-full aspect-[4/3] group-hover:scale-105 transition-transform duration-700" />
+                </button>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          <AnimatedSection direction="zoom" delay={0.3}>
+            <button onClick={() => setLightbox({ src: '/images/invitados/team1.jpeg', type: 'image' })}
+              className="w-full max-w-4xl mx-auto block glass-card rounded-2xl sm:rounded-3xl overflow-hidden group cursor-pointer ring-1 ring-gold/10 hover:ring-gold/30 hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)] transition-all duration-500">
+              <OptImage src="/images/invitados/team1.jpeg" alt="Foto del equipo con invitados" className="w-full aspect-[16/9] group-hover:scale-105 transition-transform duration-700" />
+            </button>
+          </AnimatedSection>
+        </div>
       </section>
 
       {/* ═══ 1. Próxima Visoría — Copa Zacatepec ═══ */}
