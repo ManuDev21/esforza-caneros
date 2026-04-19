@@ -114,6 +114,38 @@ const ponysMedia: { src: string; type: 'image' | 'video' }[] = [
   { src: '/videos/pequeNuv/pequeNuv9.mp4', type: 'video' },
 ]
 
+const visoriaNuevaMedia: { src: string; type: 'image' | 'video' }[] = [
+  { src: '/images/visoriaNueva/VN17.jpeg', type: 'image' },
+  { src: '/images/visoriaNueva/VN18.jpeg', type: 'image' },
+  { src: '/images/visoriaNueva/VN19.jpeg', type: 'image' },
+  { src: '/images/visoriaNueva/VN20.jpeg', type: 'image' },
+  { src: '/images/visoriaNueva/VN21.jpeg', type: 'image' },
+  { src: '/images/visoriaNueva/VN22.jpeg', type: 'image' },
+  { src: '/images/visoriaNueva/VN23.jpeg', type: 'image' },
+  { src: '/images/visoriaNueva/VN24.jpeg', type: 'image' },
+  { src: '/videos/visoriaNueva/VN.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN1.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN2.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN3.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN4.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN5.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN6.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN7.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN8.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN9.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN10.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN11.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN12.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN13.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN14.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN15.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN16.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN25.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN26.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN27.mp4', type: 'video' },
+  { src: '/videos/visoriaNueva/VN28.mp4', type: 'video' },
+]
+
 /* ── Hooks ──────────────────────────────────────────────── */
 
 function useTyped(strings: string[], typeSpeed = 50, backSpeed = 25, backDelay = 2000) {
@@ -429,6 +461,68 @@ export default function Home() {
               <OptImage src="/images/invitados/team1.jpeg" alt="Foto del equipo con invitados" className="w-full aspect-[16/9] group-hover:scale-105 transition-transform duration-700" />
             </button>
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ═══ Nuestra Más Reciente Visoría ═══ */}
+      <section className="relative py-20 sm:py-28 lg:py-36 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-dark via-bg-medium/50 to-bg-dark" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent" />
+        <div className="absolute top-20 -left-40 w-[500px] h-[500px] bg-emerald-500/[0.05] rounded-full blur-[180px]" />
+        <div className="absolute bottom-20 -right-40 w-[400px] h-[400px] bg-primary/[0.04] rounded-full blur-[150px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/[0.02] rounded-full blur-[200px]" />
+
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+          <AnimatedSection>
+            <div className="text-center mb-14 sm:mb-20 lg:mb-24">
+              <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs sm:text-sm font-medium tracking-wider mb-6 sm:mb-8">
+                <Trophy size={14} /> 11 de Abril 2026
+              </div>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight">
+                <span className="bg-gradient-to-r from-emerald-400 via-primary to-emerald-400 bg-clip-text text-transparent">Nuestra Más Reciente</span>
+                <br />
+                <span className="text-white">Visoría</span>
+              </h2>
+              <p className="mt-6 sm:mt-8 text-text-secondary max-w-3xl mx-auto text-base sm:text-lg lg:text-xl leading-relaxed">
+                El <strong className="text-white font-semibold">11 de abril de 2026</strong> se llevó a cabo nuestra visoría en la
+                <strong className="text-emerald-400 font-semibold"> Unidad Deportiva Alejandra</strong> de Tlaltizapán, Morelos.
+                Un día lleno de talento, esfuerzo y corazón.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          {/* Motivational message */}
+          <AnimatedSection direction="zoom">
+            <div className="glass-card rounded-3xl p-8 sm:p-10 lg:p-12 border border-emerald-500/10 mb-14 sm:mb-20 text-center max-w-4xl mx-auto relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/[0.03] via-transparent to-primary/[0.03]" />
+              <div className="relative">
+                <Quote size={40} className="text-emerald-400/30 mx-auto mb-6" />
+                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-snug mb-6">
+                  "Cada visoría es una oportunidad para demostrar que el <span className="text-emerald-400">talento</span> nace del <span className="text-primary">esfuerzo</span> y la <span className="text-gold">dedicación</span>."
+                </p>
+                <p className="text-text-secondary text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+                  A todos nuestros jugadores — desde los <strong className="text-white">Ponys</strong>, pasando por la <strong className="text-white">Sub Mediana</strong>, hasta la categoría <strong className="text-white">Grande</strong> — este es su momento. Cada entrenamiento, cada gota de sudor, los trajo hasta aquí. ¡Sigan brillando, Cañeros!
+                </p>
+                <div className="mt-8 flex flex-wrap justify-center gap-3">
+                  <div className="px-5 py-2.5 rounded-xl bg-primary/10 border border-primary/20 text-primary text-sm font-semibold flex items-center gap-2">
+                    <Baby size={14} /> Ponys
+                  </div>
+                  <div className="px-5 py-2.5 rounded-xl bg-secondary/10 border border-secondary/20 text-secondary text-sm font-semibold flex items-center gap-2">
+                    <Users size={14} /> Sub Mediana
+                  </div>
+                  <div className="px-5 py-2.5 rounded-xl bg-gold/10 border border-gold/20 text-gold text-sm font-semibold flex items-center gap-2">
+                    <Trophy size={14} /> Grande
+                  </div>
+                  <div className="px-5 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-semibold flex items-center gap-2">
+                    <Calendar size={14} /> Tlaltizapán, Morelos
+                  </div>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Media grid */}
+          <MediaGrid items={visoriaNuevaMedia} onClickItem={setLightbox} emptySlots={0} />
         </div>
       </section>
 
