@@ -7,7 +7,8 @@ interface SplashScreenProps {
 }
 
 const WELCOME_LINE_1 = 'BIENVENIDOS A'
-const WELCOME_LINE_2 = 'CAÑEROS ESFORZA TOLUCA'
+const WELCOME_LINE_2 = 'ESFORZA CAÑEROS'
+const WELCOME_LINE_3 = 'TOLUCA AEROPUERTO'
 
 export default function SplashScreen({ onEnter }: SplashScreenProps) {
   // Phases:
@@ -17,8 +18,8 @@ export default function SplashScreen({ onEnter }: SplashScreenProps) {
   const [phase, setPhase] = useState(0)
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase(1), 3400) // letters done (bounce + jelly + fallback trigger)
-    const t2 = setTimeout(() => setPhase(2), 5200) // image settled -> button
+    const t1 = setTimeout(() => setPhase(1), 8500) // letters done (bounce + jelly + fallback)
+    const t2 = setTimeout(() => setPhase(2), 10500) // image settled -> button
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
 
@@ -44,7 +45,8 @@ export default function SplashScreen({ onEnter }: SplashScreenProps) {
               style={{ perspective: 800 }}
             >
               <FallingText text={WELCOME_LINE_1} className="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-wide" />
-              <FallingText text={WELCOME_LINE_2} className="text-xl sm:text-3xl md:text-5xl font-black text-gradient-green tracking-wide" delay={0.9} />
+              <FallingText text={WELCOME_LINE_2} className="text-xl sm:text-3xl md:text-5xl font-black text-gradient-green tracking-wide" delay={1.0} />
+              <FallingText text={WELCOME_LINE_3} className="text-lg sm:text-2xl md:text-4xl font-black text-white tracking-wide" delay={2.0} />
             </motion.div>
           )}
         </AnimatePresence>
@@ -97,8 +99,8 @@ export default function SplashScreen({ onEnter }: SplashScreenProps) {
 
 /* ─── Letters: bounce in → jelly wobble → fall back ─── */
 function FallingText({ text, className = '', delay = 0 }: { text: string; className?: string; delay?: number }) {
-  // Total per-letter timeline duration (bounce + jelly + fall back)
-  const totalDuration = 2.4
+  // Total per-letter timeline duration (bounce + jelly + fall back) — doubled
+  const totalDuration = 4.8
 
   return (
     <div className={`flex flex-wrap justify-center ${className}`}>
@@ -119,7 +121,7 @@ function FallingText({ text, className = '', delay = 0 }: { text: string; classN
           }}
           transition={{
             duration: totalDuration,
-            delay: delay + i * 0.06,
+            delay: delay + i * 0.1,
             times: [
               0,
               0.18,           // landed
