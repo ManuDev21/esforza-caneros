@@ -26,28 +26,28 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
           scrolled
-            ? 'py-3 sm:py-2.5 bg-bg-dark/85 backdrop-blur-2xl shadow-[0_1px_0_0_rgba(255,255,255,0.04)] border-b border-white/[0.04]'
-            : 'py-5 sm:py-6 bg-transparent'
+            ? 'py-2 bg-bg-dark/90 backdrop-blur-2xl border-b border-primary/10 shadow-[0_4px_20px_rgba(0,0,0,0.3)]'
+            : 'py-3 sm:py-5 bg-gradient-to-b from-bg-dark/40 to-transparent backdrop-blur-sm'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between gap-6">
-          {/* Logo — compact on mobile */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group relative z-10 shrink-0">
-            <div className="relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between gap-3 sm:gap-6">
+          {/* Logo — ultra compact on mobile */}
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 group relative z-10 shrink-0 min-w-0">
+            <div className="relative shrink-0">
               <img
                 src="/images/misc/logo1.png"
                 alt="Esforza Cañeros Toluca"
-                className={`transition-all duration-500 group-hover:scale-110 ${scrolled ? 'w-8 sm:w-9' : 'w-9 sm:w-11'}`}
+                className={`transition-all duration-400 group-hover:scale-110 ${scrolled ? 'w-7 sm:w-9' : 'w-8 sm:w-11'}`}
               />
-              <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-primary/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-            <div className="flex flex-col">
-              <span className="text-white font-bold text-sm sm:text-base tracking-[0.12em] leading-tight">
+            <div className="flex flex-col min-w-0">
+              <span className="text-white font-bold text-[11px] sm:text-base tracking-[0.12em] leading-tight whitespace-nowrap">
                 ESFORZA
               </span>
-              <span className="text-primary text-[10px] sm:text-xs font-semibold tracking-[0.2em] leading-tight">
+              <span className="text-primary text-[9px] sm:text-xs font-semibold tracking-[0.18em] leading-tight whitespace-nowrap">
                 CAÑEROS
               </span>
             </div>
@@ -94,19 +94,20 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile toggle */}
+          {/* Mobile toggle — smaller, more refined */}
           <button
+            aria-label="Menú"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden relative w-11 h-11 flex items-center justify-center rounded-xl bg-white/[0.05] border border-white/[0.08] text-white hover:bg-white/[0.1] transition-all duration-300"
+            className="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary hover:bg-primary/15 active:scale-95 transition-all duration-200 shrink-0"
           >
             <AnimatePresence mode="wait">
               {mobileOpen ? (
                 <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                  <X size={20} />
+                  <X size={18} />
                 </motion.div>
               ) : (
                 <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                  <Menu size={20} />
+                  <Menu size={18} />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -125,12 +126,13 @@ export default function Navbar() {
             className="fixed inset-0 z-40 bg-bg-dark/98 backdrop-blur-2xl lg:hidden"
           >
             {/* Close button at top */}
-            <div className="absolute top-5 right-4">
+            <div className="absolute top-3 right-4">
               <button
+                aria-label="Cerrar"
                 onClick={() => setMobileOpen(false)}
-                className="w-11 h-11 flex items-center justify-center rounded-xl bg-white/[0.05] border border-white/[0.08] text-white"
+                className="w-10 h-10 flex items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary active:scale-95 transition-transform"
               >
-                <X size={20} />
+                <X size={18} />
               </button>
             </div>
 

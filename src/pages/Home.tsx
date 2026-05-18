@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Trophy, Clock, Users, X, Play, ArrowRight, Q
 import AnimatedSection from '../components/AnimatedSection'
 import OptImage from '../components/OptImage'
 import LazyVideo from '../components/LazyVideo'
+import FloatingBalls from '../components/FloatingBalls'
 
 /* ── Data ───────────────────────────────────────────────── */
 
@@ -360,10 +361,14 @@ export default function Home() {
       {/* ═══ Hero ═══ */}
       <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center scale-110" style={{ backgroundImage: `url('/images/heroes/hero2.png')` }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-bg-dark/60 via-bg-dark/40 to-bg-dark" />
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-dark/70 via-bg-dark/50 to-bg-dark" />
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-30" />
         {/* Decorative orbs */}
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/8 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/8 rounded-full blur-[150px]" />
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/[0.10] rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-gold/[0.06] rounded-full blur-[150px]" />
+        {/* Floating 3D soccer balls */}
+        <FloatingBalls count={8} />
 
         <div className="relative z-10 max-w-5xl mx-auto px-7 sm:px-10">
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
