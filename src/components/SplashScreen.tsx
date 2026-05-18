@@ -11,14 +11,14 @@ const WELCOME_LINE_2 = 'CAÑEROS ESFORZA TOLUCA'
 
 export default function SplashScreen({ onEnter }: SplashScreenProps) {
   // Phases:
-  // 0 = letters falling
-  // 1 = convocatoria image enters
+  // 0 = letters bouncing in + jelly wobble
+  // 1 = letters fall back (rotateX) + image enters
   // 2 = button appears
   const [phase, setPhase] = useState(0)
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase(1), 2800) // letters done -> image (slower)
-    const t2 = setTimeout(() => setPhase(2), 4400) // image settled -> button (slower)
+    const t1 = setTimeout(() => setPhase(1), 3400) // letters done (bounce + jelly + fallback trigger)
+    const t2 = setTimeout(() => setPhase(2), 5200) // image settled -> button
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
 
@@ -35,17 +35,16 @@ export default function SplashScreen({ onEnter }: SplashScreenProps) {
 
       <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-2xl text-center">
 
-        {/* Phase 0: Falling letters */}
-        <AnimatePresence mode="wait">
-          {phase === 0 && (
+        {/* Phase 0: Letters bounce in + jelly + fall back when phase >= 1 */}
+        <AnimatePresence>
+          {phase < 1 && (
             <motion.div
               key="letters"
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
               className="flex flex-col items-center gap-2 sm:gap-3"
+              style={{ perspective: 800 }}
             >
               <FallingText text={WELCOME_LINE_1} className="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-wide" />
-              <FallingText text={WELCOME_LINE_2} className="text-xl sm:text-3xl md:text-5xl font-black text-gradient-green tracking-wide" delay={0.6} />
+              <FallingText text={WELCOME_LINE_2} className="text-xl sm:text-3xl md:text-5xl font-black text-gradient-green tracking-wide" delay={0.9} />
             </motion.div>
           )}
         </AnimatePresence>
@@ -96,21 +95,48 @@ export default function SplashScreen({ onEnter }: SplashScreenProps) {
   )
 }
 
-/* ─── Falling letters component ─── */
+/* ─── Letters: bounce in → jelly wobble → fall back ─── */
 function FallingText({ text, className = '', delay = 0 }: { text: string; className?: string; delay?: number }) {
+  // Total per-letter timeline duration (bounce + jelly + fall back)
+  const totalDuration = 2.4
+
   return (
     <div className={`flex flex-wrap justify-center ${className}`}>
       {text.split('').map((char, i) => (
         <motion.span
           key={`${char}-${i}`}
-          initial={{ y: -80, opacity: 0, rotate: -15 }}
-          animate={{ y: 0, opacity: 1, rotate: 0 }}
-          transition={{
-            duration: 0.5,
-            delay: delay + i * 0.07,
-            ease: [0.34, 1.56, 0.64, 1],
+          initial={{ y: -120, opacity: 0, rotate: -20, scaleY: 1, scaleX: 1 }}
+          animate={{
+            // 1) Bounce in (drop with overshoot)
+            // 2) Jelly wobble (scaleX/scaleY)
+            // 3) Fall back (rotateX + y down + fade)
+            y: [-120, 0, 0, 0, 0, 60],
+            opacity: [0, 1, 1, 1, 1, 0],
+            rotate: [-20, 0, 0, 0, 0, 0],
+            rotateX: [0, 0, 0, 0, 0, -90],
+            scaleX: [1, 1, 1.25, 0.85, 1, 1],
+            scaleY: [1, 1, 0.75, 1.2, 1, 0.8],
           }}
-          style={{ display: 'inline-block' }}
+          transition={{
+            duration: totalDuration,
+            delay: delay + i * 0.06,
+            times: [
+              0,
+              0.18,           // landed
+              0.34,           // jelly squish wide
+              0.5,            // jelly stretch tall
+              0.62,           // settle
+              1,              // fall back
+            ],
+            ease: [
+              [0.34, 1.56, 0.64, 1], // bounce ease for 0→land
+              'easeOut',
+              'easeInOut',
+              'easeInOut',
+              'easeIn',
+            ],
+          }}
+          style={{ display: 'inline-block', transformOrigin: 'bottom center', transformStyle: 'preserve-3d' }}
         >
           {char === ' ' ? '\u00A0' : char}
         </motion.span>

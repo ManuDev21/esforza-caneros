@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Trophy, Clock, Users, X, Play, ArrowRight, Q
 import AnimatedSection from '../components/AnimatedSection'
 import OptImage from '../components/OptImage'
 import LazyVideo from '../components/LazyVideo'
+import { Link } from 'react-router-dom'
 
 /* ── Data ───────────────────────────────────────────────── */
 
@@ -1108,8 +1109,8 @@ export default function Home() {
               const Icon = card.icon
               return (
                 <AnimatedSection key={card.to} delay={i * 0.08}>
-                  <a
-                    href={card.to}
+                  <Link
+                    to={card.to}
                     className={`group relative block h-full rounded-2xl sm:rounded-3xl overflow-hidden ring-1 ${card.ring} bg-gradient-to-br ${card.bg} backdrop-blur-md p-7 sm:p-9 lg:p-10 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-400`}
                   >
                     {/* Decorative glow */}
@@ -1134,7 +1135,7 @@ export default function Home() {
                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
                       </div>
                     </div>
-                  </a>
+                  </Link>
                 </AnimatedSection>
               )
             })}
