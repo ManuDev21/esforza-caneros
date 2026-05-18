@@ -71,7 +71,7 @@ const testimonials = [
 
 const stats = [
   { icon: Trophy, value: '6', label: 'Títulos', color: 'text-gold' },
-  { icon: Users, value: '500+', label: 'Alumnos', color: 'text-primary' },
+  { icon: Users, value: '100+', label: 'Alumnos', color: 'text-primary' },
   { icon: Award, value: '30+', label: 'Años', color: 'text-secondary' },
   { icon: Sparkles, value: '4', label: 'Profes', color: 'text-accent' },
 ]

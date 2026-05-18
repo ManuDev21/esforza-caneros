@@ -33,7 +33,7 @@ const values = [
 
 const stats = [
   { icon: Trophy, value: '6', label: 'Títulos Ganados', color: 'text-gold' },
-  { icon: Users, value: '500+', label: 'Alumnos Formados', color: 'text-primary' },
+  { icon: Users, value: '100+', label: 'Alumnos Formados', color: 'text-primary' },
   { icon: Award, value: '30+', label: 'Años de Experiencia', color: 'text-secondary' },
   { icon: Sparkles, value: '4', label: 'Entrenadores Pro', color: 'text-accent' },
 ]
