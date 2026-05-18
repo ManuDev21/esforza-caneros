@@ -1,147 +1,120 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 interface SplashScreenProps {
   onEnter: () => void
 }
 
+const WELCOME_LINE_1 = 'BIENVENIDOS A'
+const WELCOME_LINE_2 = 'CAÑEROS ESFORZA TOLUCA'
+
 export default function SplashScreen({ onEnter }: SplashScreenProps) {
-  const [phase, setPhase] = useState<'loading' | 'reveal' | 'cta'>('loading')
+  // Phases:
+  // 0 = letters falling
+  // 1 = convocatoria image enters
+  // 2 = button appears
+  const [phase, setPhase] = useState(0)
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase('reveal'), 1400)
-    const t2 = setTimeout(() => setPhase('cta'), 2400)
+    const t1 = setTimeout(() => setPhase(1), 1800) // letters done -> image
+    const t2 = setTimeout(() => setPhase(2), 2700) // image settled -> button
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
 
   return (
-    <AnimatePresence>
-      <motion.div
-        key="splash"
-        exit={{ opacity: 0, scale: 1.05 }}
-        transition={{ duration: 0.8, ease: 'easeInOut' }}
-        className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-bg-dark"
-      >
-        {/* Background gradient + grid */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-deep/20 via-bg-dark to-bg-medium" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-40" />
+    <motion.div
+      key="splash"
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-bg-dark px-4"
+    >
+      {/* Subtle gradient background — no heavy effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-deep/15 via-bg-dark to-bg-medium" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/[0.06] rounded-full blur-[160px]" />
 
-        {/* Decorative orbs */}
-        <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-primary/[0.08] rounded-full blur-[180px]" />
-        <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-gold/[0.05] rounded-full blur-[180px]" />
+      <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-2xl text-center">
 
-        {/* Floating soccer balls */}
-        {[
-          { top: '8%', left: '10%', size: 28, delay: 0 },
-          { top: '15%', right: '12%', size: 38, delay: 1.5 },
-          { bottom: '15%', left: '8%', size: 32, delay: 2.8 },
-          { bottom: '10%', right: '15%', size: 26, delay: 0.8 },
-          { top: '50%', left: '5%', size: 22, delay: 4 },
-          { top: '40%', right: '6%', size: 30, delay: 2 },
-        ].map((ball, i) => (
-          <div
-            key={i}
-            className="absolute opacity-40 text-white animate-float-3d hidden sm:block"
-            style={{ ...ball, animationDelay: `${ball.delay}s`, fontSize: ball.size }}
-          >
-            ⚽
-          </div>
-        ))}
-
-        <div className="relative z-10 flex flex-col items-center justify-center px-6 max-w-2xl text-center">
-          {/* Rotating loader with image */}
-          <div className="relative mb-8 sm:mb-10">
-            {/* Rotating outer ring */}
+        {/* Phase 0: Falling letters */}
+        <AnimatePresence mode="wait">
+          {phase === 0 && (
             <motion.div
-              initial={{ scale: 0, rotate: -180, opacity: 0 }}
-              animate={{ scale: 1, rotate: 0, opacity: 1 }}
-              transition={{ duration: 1.0, ease: 'easeOut' }}
+              key="letters"
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+              className="flex flex-col items-center gap-2 sm:gap-3"
+            >
+              <FallingText text={WELCOME_LINE_1} className="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-wide" />
+              <FallingText text={WELCOME_LINE_2} className="text-xl sm:text-3xl md:text-5xl font-black text-gradient-green tracking-wide" delay={0.6} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Phase 1+: Convocatoria image */}
+        <AnimatePresence>
+          {phase >= 1 && (
+            <motion.div
+              key="conv-img"
+              initial={{ opacity: 0, scale: 0.7, rotate: -8 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="relative"
             >
-              {/* Outer rotating ring (slow) */}
-              <div className="absolute -inset-4 sm:-inset-6 rounded-full border-2 border-dashed border-primary/40 animate-spin-slow" />
-              {/* Middle reverse ring */}
-              <div className="absolute -inset-2 sm:-inset-3 rounded-full border-2 border-gold/30 border-dashed animate-spin-reverse" />
-
-              {/* Pulse rings */}
-              <div className="absolute inset-0 rounded-2xl bg-primary/20 animate-pulse-ring" />
-              <div className="absolute inset-0 rounded-2xl bg-primary/10 animate-pulse-ring" style={{ animationDelay: '1.2s' }} />
-
-              {/* The convocatoria image */}
-              <motion.div
-                animate={
-                  phase === 'loading'
-                    ? { rotate: 360 }
-                    : { rotate: 0, scale: [1, 1.02, 1] }
-                }
-                transition={
-                  phase === 'loading'
-                    ? { duration: 1.4, ease: 'easeInOut', repeat: 0 }
-                    : { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }
-                }
-                className="relative w-44 h-64 sm:w-56 sm:h-80 md:w-64 md:h-96 rounded-2xl overflow-hidden ring-4 ring-primary/40 shadow-[0_0_60px_rgba(74,222,128,0.4)]"
-              >
-                <img
-                  src="/images/misc/convocatoria.jpeg"
-                  alt="Convocatoria Cañeros Zacatepec"
-                  className="w-full h-full object-cover"
-                />
-                {/* Shine overlay */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent" />
-              </motion.div>
+              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-primary/30 to-gold/20 blur-xl" />
+              <img
+                src="/images/misc/convocatoria.jpeg"
+                alt="Convocatoria Cañeros Zacatepec"
+                className="relative w-52 sm:w-72 md:w-80 rounded-2xl ring-2 ring-primary/40 shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+                loading="eager"
+              />
             </motion.div>
-          </div>
+          )}
+        </AnimatePresence>
 
-          {/* Title — appears after rotation */}
-          <AnimatePresence>
-            {phase !== 'loading' && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="text-center"
-              >
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-[11px] sm:text-xs font-bold tracking-[0.2em] mb-4 sm:mb-5">
-                  <Sparkles size={12} />
-                  CONVOCATORIA ABIERTA
-                </div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-black leading-tight mb-3">
-                  <span className="text-white">ESFORZA </span>
-                  <span className="text-gradient-green">CAÑEROS</span>
-                </h1>
-                <p className="text-text-secondary text-sm sm:text-base mb-7 sm:mb-9 max-w-md mx-auto leading-relaxed px-2">
-                  Zacatepec · Campus Toluca Aeropuerto
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+        {/* Phase 2: Button */}
+        <AnimatePresence>
+          {phase >= 2 && (
+            <motion.button
+              key="cta"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+              onClick={onEnter}
+              className="mt-8 sm:mt-10 group relative px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-primary to-accent text-bg-dark font-bold text-sm sm:text-base tracking-wide shadow-[0_10px_30px_rgba(74,222,128,0.35)] hover:shadow-[0_15px_45px_rgba(74,222,128,0.55)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 flex items-center gap-3"
+            >
+              Conoce más
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
+            </motion.button>
+          )}
+        </AnimatePresence>
+      </div>
 
-          {/* CTA button — appears last with pulse */}
-          <AnimatePresence>
-            {phase === 'cta' && (
-              <motion.button
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.5, ease: 'backOut' }}
-                onClick={onEnter}
-                className="group relative px-7 sm:px-10 py-4 sm:py-4.5 rounded-2xl bg-gradient-to-r from-primary to-accent text-bg-dark font-bold text-sm sm:text-base tracking-wide shadow-[0_10px_40px_rgba(74,222,128,0.4)] hover:shadow-[0_15px_50px_rgba(74,222,128,0.6)] hover:scale-[1.04] transition-all duration-300 flex items-center gap-3 animate-pulse-glow"
-              >
-                <span className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-primary to-accent opacity-50 blur-md group-hover:opacity-80 transition-opacity" />
-                <span className="relative flex items-center gap-3">
-                  Conoce sobre nosotros
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </span>
-              </motion.button>
-            )}
-          </AnimatePresence>
-        </div>
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-text-muted text-[10px] sm:text-xs tracking-[0.3em] font-medium">
+        ¡HACER DEPORTE ES HACER PATRIA!
+      </div>
+    </motion.div>
+  )
+}
 
-        {/* Bottom decoration */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-text-muted text-[10px] sm:text-xs tracking-[0.3em] font-medium">
-          ¡HACER DEPORTE ES HACER PATRIA!
-        </div>
-      </motion.div>
-    </AnimatePresence>
+/* ─── Falling letters component ─── */
+function FallingText({ text, className = '', delay = 0 }: { text: string; className?: string; delay?: number }) {
+  return (
+    <div className={`flex flex-wrap justify-center ${className}`}>
+      {text.split('').map((char, i) => (
+        <motion.span
+          key={`${char}-${i}`}
+          initial={{ y: -80, opacity: 0, rotate: -15 }}
+          animate={{ y: 0, opacity: 1, rotate: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: delay + i * 0.04,
+            ease: [0.34, 1.56, 0.64, 1],
+          }}
+          style={{ display: 'inline-block' }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </motion.span>
+      ))}
+    </div>
   )
 }

@@ -4,7 +4,6 @@ import { ChevronLeft, ChevronRight, Trophy, Clock, Users, X, Play, ArrowRight, Q
 import AnimatedSection from '../components/AnimatedSection'
 import OptImage from '../components/OptImage'
 import LazyVideo from '../components/LazyVideo'
-import FloatingBalls from '../components/FloatingBalls'
 
 /* ── Data ───────────────────────────────────────────────── */
 
@@ -259,31 +258,23 @@ function MediaCard({ item, onClick }: { item: { src: string; type: string }; onC
 }
 
 function InfoCard({ img, icon: Icon, title, description, children }: { img: string; icon: typeof Trophy; title: string; description: string; children: React.ReactNode }) {
-  const [open, setOpen] = useState(false)
   return (
-    <div className="glass-card rounded-2xl sm:rounded-3xl overflow-hidden hover:shadow-[0_20px_60px_rgba(0,232,123,0.08)] hover:-translate-y-1 transition-all duration-500 flex flex-col h-full">
+    <div className="glass-card rounded-2xl sm:rounded-3xl overflow-hidden ring-1 ring-primary/10 hover:ring-primary/30 hover:shadow-[0_20px_60px_rgba(74,222,128,0.10)] hover:-translate-y-1 transition-all duration-400 flex flex-col h-full">
       <div className="relative">
-        <OptImage src={img} alt={title} className="w-full h-52 sm:h-56" />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent" />
+        <OptImage src={img} alt={title} className="w-full h-48 sm:h-56" />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-bg-card/40 to-transparent" />
         <div className="absolute bottom-4 left-5 w-12 h-12 rounded-xl bg-primary/20 backdrop-blur-sm border border-primary/30 flex items-center justify-center">
           <Icon size={20} className="text-primary" />
         </div>
       </div>
-      <div className="p-6 sm:p-8 flex flex-col flex-1">
-        <h5 className="text-white font-bold text-lg sm:text-xl mb-2 sm:mb-3">{title}</h5>
-        <p className="text-text-muted text-sm sm:text-base mb-6 leading-relaxed">{description}</p>
-        <button onClick={() => setOpen(!open)}
-          className="mt-auto self-start px-6 py-3 rounded-xl text-sm font-semibold tracking-wide border transition-all duration-300 flex items-center gap-2.5 group/btn border-primary/30 text-primary hover:bg-primary hover:text-bg-dark">
-          {open ? 'Ver menos' : 'Ver más'}
-          <ArrowRight size={14} className={`transition-transform duration-300 ${open ? 'rotate-90' : 'group-hover/btn:translate-x-0.5'}`} />
-        </button>
-        <AnimatePresence>
-          {open && (
-            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.4 }} className="overflow-hidden">
-              <div className="mt-6 pt-6 border-t border-white/[0.06] space-y-4">{children}</div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <div className="p-6 sm:p-8 flex flex-col flex-1 gap-5">
+        <div>
+          <h5 className="text-white font-bold text-lg sm:text-xl mb-3">{title}</h5>
+          <p className="text-text-secondary text-sm sm:text-base leading-relaxed">{description}</p>
+        </div>
+        <div className="pt-5 border-t border-primary/10 space-y-3">
+          {children}
+        </div>
       </div>
     </div>
   )
@@ -360,15 +351,12 @@ export default function Home() {
 
       {/* ═══ Hero ═══ */}
       <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center scale-110" style={{ backgroundImage: `url('/images/heroes/hero2.png')` }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-bg-dark/70 via-bg-dark/50 to-bg-dark" />
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-        {/* Decorative orbs */}
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/[0.10] rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-gold/[0.06] rounded-full blur-[150px]" />
-        {/* Floating 3D soccer balls */}
-        <FloatingBalls count={8} />
+        {/* Bigger, more striking hero image */}
+        <div className="absolute inset-0 bg-cover bg-center scale-125" style={{ backgroundImage: `url('/images/heroes/hero2.png')` }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-dark/50 via-bg-dark/30 to-bg-dark" />
+        {/* Subtle accent orbs */}
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/[0.12] rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-gold/[0.08] rounded-full blur-[150px]" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-7 sm:px-10">
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}

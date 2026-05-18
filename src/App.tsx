@@ -1,9 +1,9 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import SplashScreen from './components/SplashScreen'
+import WhatsAppFAB from './components/WhatsAppFAB'
 import Home from './pages/Home'
 import Nosotros from './pages/Nosotros'
 import FAQ from './pages/FAQ'
@@ -43,7 +43,6 @@ function App() {
       </AnimatePresence>
       <div className="min-h-screen flex flex-col">
         <ScrollToTop />
-        <Navbar />
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -55,6 +54,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      <WhatsAppFAB />
     </>
   )
 }
