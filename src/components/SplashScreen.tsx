@@ -45,7 +45,7 @@ export default function SplashScreen({ onEnter }: SplashScreenProps) {
               style={{ perspective: 800 }}
             >
               <FallingText text={WELCOME_LINE_1} className="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-wide" />
-              <FallingText text={WELCOME_LINE_2} className="text-xl sm:text-3xl md:text-5xl font-black text-gradient-green tracking-wide" delay={1.0} />
+              <FallingText text={WELCOME_LINE_2} className="text-xl sm:text-3xl md:text-5xl font-black text-primary tracking-wide" delay={1.0} />
               <FallingText text={WELCOME_LINE_3} className="text-lg sm:text-2xl md:text-4xl font-black text-white tracking-wide" delay={2.0} />
             </motion.div>
           )}
