@@ -17,8 +17,8 @@ export default function SplashScreen({ onEnter }: SplashScreenProps) {
   const [phase, setPhase] = useState(0)
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase(1), 1800) // letters done -> image
-    const t2 = setTimeout(() => setPhase(2), 2700) // image settled -> button
+    const t1 = setTimeout(() => setPhase(1), 2800) // letters done -> image (slower)
+    const t2 = setTimeout(() => setPhase(2), 4400) // image settled -> button (slower)
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
 
@@ -55,16 +55,16 @@ export default function SplashScreen({ onEnter }: SplashScreenProps) {
           {phase >= 1 && (
             <motion.div
               key="conv-img"
-              initial={{ opacity: 0, scale: 0.7, rotate: -8 }}
+              initial={{ opacity: 0, scale: 0.6, rotate: -10 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="relative"
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative flex items-center justify-center"
             >
-              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-primary/30 to-gold/20 blur-xl" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/30 to-gold/20 blur-xl" />
               <img
                 src="/images/misc/convocatoria.jpeg"
                 alt="Convocatoria Cañeros Zacatepec"
-                className="relative w-52 sm:w-72 md:w-80 rounded-2xl ring-2 ring-primary/40 shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+                className="relative max-w-[80vw] max-h-[60vh] sm:max-h-[65vh] w-auto h-auto rounded-2xl ring-2 ring-primary/40 shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
                 loading="eager"
               />
             </motion.div>
@@ -76,11 +76,11 @@ export default function SplashScreen({ onEnter }: SplashScreenProps) {
           {phase >= 2 && (
             <motion.button
               key="cta"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.7, ease: 'backOut' }}
               onClick={onEnter}
-              className="mt-8 sm:mt-10 group relative px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-primary to-accent text-bg-dark font-bold text-sm sm:text-base tracking-wide shadow-[0_10px_30px_rgba(74,222,128,0.35)] hover:shadow-[0_15px_45px_rgba(74,222,128,0.55)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 flex items-center gap-3"
+              className="mt-6 sm:mt-8 group relative px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-primary to-accent text-bg-dark font-bold text-sm sm:text-base tracking-wide shadow-[0_10px_30px_rgba(74,222,128,0.35)] hover:shadow-[0_15px_45px_rgba(74,222,128,0.55)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 flex items-center gap-3 animate-pulse-glow"
             >
               Conoce más
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
@@ -107,7 +107,7 @@ function FallingText({ text, className = '', delay = 0 }: { text: string; classN
           animate={{ y: 0, opacity: 1, rotate: 0 }}
           transition={{
             duration: 0.5,
-            delay: delay + i * 0.04,
+            delay: delay + i * 0.07,
             ease: [0.34, 1.56, 0.64, 1],
           }}
           style={{ display: 'inline-block' }}

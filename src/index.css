@@ -35,6 +35,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -44,9 +46,23 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
   letter-spacing: 0.01em;
   line-height: 1.75;
   word-spacing: 0.02em;
+}
+
+/* Prevent any text from overflowing on mobile/zoom */
+h1, h2, h3, h4, h5, h6, p, span, a, button {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Safe bottom padding so floating WhatsApp button never covers content */
+main {
+  padding-bottom: 6rem;
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -562,7 +562,7 @@ export default function Home() {
                 </div>
                 {/* Overlay info */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
-                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
                     <div className="px-4 py-2 rounded-xl bg-secondary/20 backdrop-blur-md border border-secondary/30 text-secondary text-sm sm:text-base font-bold flex items-center gap-2">
                       <Calendar size={16} /> 11 de Abril, 2026
                     </div>
@@ -570,7 +570,7 @@ export default function Home() {
                       Copa Zacatepec
                     </div>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white">
+                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
                     ¡Vamos por la <span className="text-secondary">Copa Zacatepec!</span>
                   </h3>
                 </div>
@@ -578,25 +578,25 @@ export default function Home() {
             </div>
           </AnimatedSection>
 
-          <AnimatedSection className="mt-10 sm:mt-14">
-            <div className="glass-card rounded-2xl sm:rounded-3xl p-7 sm:p-9 border border-secondary/10 max-w-3xl mx-auto text-center">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-secondary to-blue-500 flex items-center justify-center mb-6 mx-auto">
+          <AnimatedSection className="mt-12 sm:mt-16">
+            <div className="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-secondary/10 max-w-3xl mx-auto text-center">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-secondary to-blue-500 flex items-center justify-center mb-7 mx-auto">
                 <Eye size={28} className="text-white" />
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-5 leading-tight">
+              <h3 className="text-xl sm:text-3xl font-bold text-white mb-5 sm:mb-7 leading-tight">
                 Tu talento <span className="text-secondary">merece ser visto</span>
               </h3>
-              <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-4">
+              <p className="text-text-secondary text-sm sm:text-lg leading-relaxed mb-5">
                 En Esforza Cañeros no solo formamos jugadores, <strong className="text-white font-semibold">abrimos puertas al futuro</strong>. La Copa Zacatepec es el escenario perfecto para brillar.
               </p>
-              <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-8">
+              <p className="text-text-secondary text-sm sm:text-lg leading-relaxed mb-10">
                 Prepárate, entrena duro y <strong className="text-white font-semibold">demuestra de qué estás hecho</strong>. ¡Esta es tu oportunidad!
               </p>
-              <div className="flex flex-wrap justify-center gap-3 mb-8">
-                <div className="px-5 py-2.5 rounded-xl bg-secondary/10 border border-secondary/20 text-secondary text-sm font-semibold">Copa Zacatepec 2026</div>
-                <div className="px-5 py-2.5 rounded-xl bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">11 de Abril</div>
+              <div className="flex flex-wrap justify-center gap-3 mb-10">
+                <div className="px-4 py-2 rounded-xl bg-secondary/10 border border-secondary/20 text-secondary text-xs sm:text-sm font-semibold">Copa Zacatepec 2026</div>
+                <div className="px-4 py-2 rounded-xl bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-semibold">11 de Abril</div>
               </div>
-              <a href="/contacto" className="inline-flex items-center gap-3 px-10 py-4 bg-secondary text-white font-bold text-base rounded-2xl hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:scale-[1.03] transition-all duration-300">
+              <a href="/contacto" className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 bg-secondary text-white font-bold text-sm sm:text-base rounded-2xl hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:scale-[1.03] transition-all duration-300">
                 Quiero participar <ArrowRight size={18} />
               </a>
             </div>
@@ -853,7 +853,7 @@ export default function Home() {
             </div>
           </AnimatedSection>
 
-          <div className="flex flex-col gap-8 sm:gap-10 md:grid md:grid-cols-3 md:gap-8 lg:gap-12">
+          <div className="flex flex-col gap-10 sm:gap-12 md:grid md:grid-cols-3 md:gap-10 lg:gap-12">
             <AnimatedSection>
               <InfoCard img="/images/cards/carta2.jpg" icon={Users} title="Nuestros Entrenadores" description="Equipo profesional con años de experiencia formando talento.">
                 <div className="grid grid-cols-2 gap-3">
@@ -968,7 +968,7 @@ export default function Home() {
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">Lo que dicen nuestros alumnos</h2>
             </div>
           </AnimatedSection>
-          <div className="flex flex-col gap-8 sm:gap-10 md:grid md:grid-cols-3 md:gap-8 lg:gap-12">
+          <div className="flex flex-col gap-10 sm:gap-12 md:grid md:grid-cols-3 md:gap-10 lg:gap-12">
             {testimonials.map((t, i) => (
               <AnimatedSection key={t.author} delay={i * 0.1}>
                 <div className="glass-card rounded-2xl sm:rounded-3xl p-7 sm:p-9 h-full flex flex-col hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(0,232,123,0.06)] transition-all duration-500">
@@ -1041,6 +1041,103 @@ export default function Home() {
                 </div>
               </AnimatedSection>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ Navegación rápida (reemplaza el navbar) ═══ */}
+      <section className="relative py-20 sm:py-28 lg:py-36 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-medium via-bg-dark to-bg-dark" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/[0.05] rounded-full blur-[180px]" />
+
+        <div className="relative max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
+          <AnimatedSection>
+            <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+              <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-medium tracking-wider mb-6 sm:mb-8">
+                <Sparkles size={14} /> Explora
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
+                <span className="text-gradient-green">¿Quieres saber más?</span>
+              </h2>
+              <p className="mt-5 sm:mt-7 text-text-secondary max-w-2xl mx-auto text-sm sm:text-base lg:text-lg leading-relaxed">
+                Descubre todo lo que <strong className="text-white">Esforza Cañeros</strong> tiene para ti.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-7 lg:gap-8">
+            {[
+              {
+                to: '/nosotros',
+                icon: Users,
+                title: 'Sobre Nosotros',
+                desc: 'Conoce nuestra historia, misión y valores que nos hacen únicos.',
+                color: 'primary',
+                bg: 'from-primary/15 to-primary-dark/10',
+                ring: 'ring-primary/15 hover:ring-primary/40',
+              },
+              {
+                to: '/promociones',
+                icon: Star,
+                title: 'Promociones',
+                desc: 'Descuentos especiales, becas y ofertas exclusivas para inscribirte hoy.',
+                color: 'gold',
+                bg: 'from-gold/15 to-yellow-700/10',
+                ring: 'ring-gold/15 hover:ring-gold/40',
+              },
+              {
+                to: '/faq',
+                icon: Quote,
+                title: 'Preguntas Frecuentes',
+                desc: 'Resolvemos las dudas más comunes sobre inscripciones, horarios y más.',
+                color: 'white',
+                bg: 'from-white/[0.04] to-white/[0.01]',
+                ring: 'ring-white/10 hover:ring-white/30',
+              },
+              {
+                to: '/contacto',
+                icon: ArrowRight,
+                title: 'Contáctanos',
+                desc: 'Estamos para ayudarte. Escríbenos por WhatsApp o visítanos en persona.',
+                color: 'primary',
+                bg: 'from-accent/15 to-primary-deep/10',
+                ring: 'ring-accent/15 hover:ring-accent/40',
+              },
+            ].map((card, i) => {
+              const Icon = card.icon
+              return (
+                <AnimatedSection key={card.to} delay={i * 0.08}>
+                  <a
+                    href={card.to}
+                    className={`group relative block h-full rounded-2xl sm:rounded-3xl overflow-hidden ring-1 ${card.ring} bg-gradient-to-br ${card.bg} backdrop-blur-md p-7 sm:p-9 lg:p-10 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-400`}
+                  >
+                    {/* Decorative glow */}
+                    <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500 ${card.color === 'gold' ? 'bg-gold/30' : card.color === 'white' ? 'bg-white/10' : 'bg-primary/30'}`} />
+
+                    <div className="relative flex flex-col h-full gap-5 sm:gap-6">
+                      <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center ${card.color === 'gold' ? 'bg-gold/15 border border-gold/30 text-gold' : card.color === 'white' ? 'bg-white/[0.05] border border-white/15 text-white' : 'bg-primary/15 border border-primary/30 text-primary'}`}>
+                        <Icon size={26} />
+                      </div>
+
+                      <div className="flex-1">
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3 sm:mb-4 leading-tight">
+                          {card.title}
+                        </h3>
+                        <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
+                          {card.desc}
+                        </p>
+                      </div>
+
+                      <div className={`inline-flex items-center gap-2 text-sm font-semibold pt-2 ${card.color === 'gold' ? 'text-gold' : card.color === 'white' ? 'text-white' : 'text-primary'}`}>
+                        Ver más
+                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
+                      </div>
+                    </div>
+                  </a>
+                </AnimatedSection>
+              )
+            })}
           </div>
         </div>
       </section>
